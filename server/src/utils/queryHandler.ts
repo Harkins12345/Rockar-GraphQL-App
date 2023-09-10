@@ -4,11 +4,14 @@ import { QueryArgs } from "./types.js";
 
 const enableCSVRead = process.env.ENABLE_CSV_READ.toLowerCase() == "true";
 
+// Handle whether to read CSV or MongoDB
 export const queryHandler = async (
   args: QueryArgs,
   collection: string,
   singleItem: boolean
 ) => {
+  // If ENABLE_CSV_READ set to false in .env
+  // Execute MongoDB query
   if (!enableCSVRead) {
     const db = await connectToDB();
     const query = new MongoDBQuery(args, db);
