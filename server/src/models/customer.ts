@@ -1,6 +1,6 @@
 import { ObjectId } from "mongodb";
 
-export default class Product {
+export class Customer {
   constructor(
     public email: string,
     public forename: string,

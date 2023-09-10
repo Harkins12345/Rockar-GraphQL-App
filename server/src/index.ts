@@ -1,26 +1,18 @@
-import express, { Application } from "express";
-import { graphqlHTTP } from "express-graphql";
-import dotenv from "dotenv";
-import { connectToCluster } from "./utils";
-import schema from "./schema/schema";
+import { ApolloServer } from "@apollo/server";
+import { startStandaloneServer } from "@apollo/server/standalone";
+import { typeDefs } from "./schema/schema.js";
+import { resolvers } from "./schema/resolvers.js";
 
-dotenv.config();
+// Grab port from .env
+const PORT = Number(process.env.PORT) || 8000;
 
-// Grab port and MongoDB credentials from .env
-const PORT = process.env.PORT || 8000;
-const MONGODB_USERNAME = process.env.MONGODB_USERNAME || "";
-const MONGODB_PASSWORD = process.env.MONGODB_PASSWORD || "";
-const MONGODB_CLUSTER = process.env.MONGODB_CLUSTER || "";
-
-// Create and connect to MongoDB URI
-const mongoDBURI = `mongodb+srv://${MONGODB_USERNAME}:${MONGODB_PASSWORD}@${MONGODB_CLUSTER}.mongodb.net/`;
-connectToCluster(mongoDBURI);
-
-//Start Express Server
-const app: Application = express();
-
-app.use("/graphql", graphqlHTTP({ schema, graphiql: true }));
-
-app.listen(3000, () => {
-  console.log(`[server] Server running at http://localhost:${PORT}`);
+const server = new ApolloServer({
+  typeDefs,
+  resolvers,
 });
+
+const { url } = await startStandaloneServer(server, {
+  listen: { port: PORT },
+});
+
+console.log(`Server ready at: ${url}`);

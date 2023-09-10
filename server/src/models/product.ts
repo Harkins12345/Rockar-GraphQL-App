@@ -1,6 +1,6 @@
 import { ObjectId } from "mongodb";
 
-export default class Product {
+export class Product {
   constructor(
     public vin: string,
     public colour: string,
