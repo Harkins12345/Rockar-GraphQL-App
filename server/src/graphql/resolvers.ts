@@ -1,24 +1,19 @@
-import { connectToDB } from "../utils/mongodbConnect.js";
-import { CustomersArgs } from "./types.js";
-
-const db = await connectToDB();
+import { ProductArgs, CustomersArgs } from "../utils/types.js";
+import { queryHandler } from "../utils/queryHandler.js";
 
 export const resolvers = {
   Query: {
-    products: async () => {
-      return db.collection("Products").find().toArray();
+    products: async (_, args: ProductArgs) => {
+      return queryHandler(args, "Products", false);
     },
-    product: async (_, { vin }) => {
-      return db.collection("Products").findOne({ vin });
+    product: async (_, args: ProductArgs) => {
+      return queryHandler(args, "Products", true);
     },
     customers: async (_, args: CustomersArgs) => {
-      return db
-        .collection("Customers")
-        .find({ ...args })
-        .toArray();
+      return queryHandler(args, "Customers", false);
     },
-    customer: async (_, { email }) => {
-      return db.collection("Customers").findOne({ email });
+    customer: async (_, args: CustomersArgs) => {
+      return queryHandler(args, "Customers", true);
     },
   },
 };
