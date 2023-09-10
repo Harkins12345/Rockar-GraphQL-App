@@ -1,3 +1,4 @@
+// Set up GraphQL Schema
 export const typeDefs = `#graphql
     type Product {
       vin: String!

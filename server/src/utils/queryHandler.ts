@@ -14,15 +14,15 @@ export const queryHandler = async (
     const query = new MongoDBQuery(args, db);
     if (collection === "Products") {
       if (singleItem) {
-        return query.getProduct();
+        return await query.getProduct();
       } else {
-        return query.getProducts();
+        return await query.getProducts();
       }
     } else if (collection === "Customers") {
       if (singleItem) {
-        return query.getCustomer();
+        return await query.getCustomer();
       } else {
-        return query.getCustomers();
+        return await query.getCustomers();
       }
     }
   }

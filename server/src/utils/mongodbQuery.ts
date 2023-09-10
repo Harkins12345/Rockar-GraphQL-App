@@ -10,20 +10,20 @@ export class MongoDBQuery {
   }
 
   public getProducts = async () =>
-    this.db
+    await this.db
       .collection("Products")
       .find({ ...this.args })
       .toArray();
 
   public getProduct = async () =>
-    this.db.collection("Products").findOne({ ...this.args });
+    await this.db.collection("Products").findOne({ ...this.args });
 
   public getCustomers = async () =>
-    this.db
+    await this.db
       .collection("Customers")
       .find({ ...this.args })
       .toArray();
 
   public getCustomer = async () =>
-    this.db.collection("Customers").findOne({ ...this.args });
+    await this.db.collection("Customers").findOne({ ...this.args });
 }

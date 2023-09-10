@@ -11,6 +11,7 @@ const server = new ApolloServer({
   resolvers,
 });
 
+// Start Apollo Server
 const { url } = await startStandaloneServer(server, {
   listen: { port: PORT },
 });
