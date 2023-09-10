@@ -1,8 +1,9 @@
 export const typeDefs = `#graphql
     type Product {
-      vin: ID!
+      vin: String!
       colour: String!
       model: String!
+      make: String!
       price: Int!
     }
     type Customer {
@@ -14,5 +15,8 @@ export const typeDefs = `#graphql
     }
     type Query {
       products: [Product]
+      product(vin: String!): Product
+      customers: [Customer]
+      customer(email: String!): Customer
     }
 `;
