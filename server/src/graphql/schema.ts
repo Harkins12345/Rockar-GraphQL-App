@@ -16,7 +16,11 @@ export const typeDefs = `#graphql
     type Query {
       products: [Product]
       product(vin: String!): Product
-      customers: [Customer]
+      customers(email: String, 
+                forename: String, 
+                surname: String, 
+                contact_number: String, 
+                postcode: String): [Customer]
       customer(email: String!): Customer
     }
 `;
