@@ -12,7 +12,7 @@ To setup the application, follow the steps below:
 
 ```
 MONGODB_URI=<Your MongoDB Connection String>
-CSV_FILE_PATH=<Path to your CSV file>
+CSV_FILE_PATH=<Path to your folder containing CSVs>
 PORT=<Port to run Apollo server on>
 ```
 
