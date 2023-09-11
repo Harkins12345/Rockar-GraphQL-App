@@ -1,4 +1,4 @@
-import { MongoClient } from "mongodb";
+import { MongoClient, Db } from "mongodb";
 import dotenv from "dotenv";
 
 dotenv.config();
@@ -6,7 +6,11 @@ const MONGODB_URI = process.env.MONGODB_URI || "";
 
 let db = null;
 
-export async function connectToDB() {
+/**
+ * Handles connection to MongoDB.
+ * @returns {Db} - The database connection.
+ */
+export async function connectToDB(): Promise<Db> {
   if (db) return db;
 
   try {

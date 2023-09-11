@@ -15,7 +15,11 @@ export const typeDefs = `#graphql
       postcode: String!
     }
     type Query {
-      products: [Product]
+      products(vin: String,
+               colour: String,
+               model: String,
+               make: String,
+               price: Int): [Product]
       product(vin: String!): Product
       customers(email: String, 
                 forename: String, 
