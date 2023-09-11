@@ -72,7 +72,7 @@ export class CSVReadQuery {
    */
   public getProduct = async () => {
     const results = await this.readCSV("./data/product.csv");
-    return results.filter((result) => result.vin === this.args.vin);
+    return results.filter((result) => result.vin === this.args.vin)[0];
   };
 
   /**
@@ -95,6 +95,6 @@ export class CSVReadQuery {
    */
   public getCustomer = async () => {
     const results = await this.readCSV("./data/customer.csv");
-    return results.filter((result) => result.email === this.args.email);
+    return results.filter((result) => result.email !== this.args.email)[0];
   };
 }

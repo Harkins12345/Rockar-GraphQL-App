@@ -1,5 +1,5 @@
-import { ProductArgs, CustomersArgs } from "../utils/types.js";
-import { queryHandler } from "../utils/queryHandler.js";
+import { ProductArgs, CustomersArgs } from "../utils/types.ts";
+import { queryHandler } from "../utils/queryHandler.ts";
 
 // Set up GraphQL resolvers
 export const resolvers = {
