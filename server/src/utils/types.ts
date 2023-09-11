@@ -14,4 +14,6 @@ export interface ProductArgs {
   price?: Number;
 }
 
-export type QueryArgs = CustomersArgs | ProductArgs;
+export type QueryResults = QueryArgs;
+
+export type QueryArgs = CustomersArgs & ProductArgs;
