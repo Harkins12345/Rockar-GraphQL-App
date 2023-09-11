@@ -1,23 +1,56 @@
-# Rockar Tech Test
+# GraphQL Application
 
-### Objective
-To demonstrate your OOP and Unit Testing skills
+This is a GraphQL application which queries MongoDB and CSV files for customer and product data.
 
-### Task
-Create a working application with a GraphQL endpoint (schema and resolvers) at which we could query for Customer and Product details, but with a view that this could expand to contain any number of objects in the future. The response should be in valid JSON format.
+## Setup
 
-The product.csv and customer.csv files provided contain dummy data in order to fulfil these requests, though within the application it is expected that data can be sourced from either a .csv file or DB connection (to be configurable via an .env file).
+To setup the application, follow the steps below:
 
-Whilst no external connection will be required, where appropriate stub out any external data connection.
+1. Clone the repository
+2. Install the dependencies using `npm install`
+3. Create a `.env` file in the `/server` directory of the project and add the following variables:
 
-Following coding standards, please add unit tests, docblocks, comments, etc…
+```
+MONGODB_URI=<Your MongoDB Connection String>
+CSV_FILE_PATH=<Path to your CSV file>
+PORT=<Port to run Apollo server on>
+```
 
-Less is more, but sometimes a plugin will be more time efficient than writing something from scratch - Use your best judgement and document any necessary setup requirements in the README.
+## Running the Application
 
-Submissions to be sent over as separate git repositories with suitable commits, messages, tags, etc…
+To run the application, use the command `npm run start` or `npm run dev`.
 
+Got to `http://localhost:{PORT}`, the application will default to port `8000`.
 
-### Assessment
-Your submission will be assessed on your ability to present a practical understanding of the OOP Principles (Abstraction, Encapsulation, Polymorphism, Implementation), APIs, coding standards and unit testing.
+## Querying Data
 
-Points will be deducted for any redundant code left over or for any code not fully refactored.
+The application can query customer and product data from both MongoDB and CSV files. The data can be queried using GraphQL queries. Here is an example of a query:
+
+```
+{
+  customers {
+    forename
+    email
+  }
+  products {
+    vin
+    make
+    price
+  }
+}
+```
+
+This will return the forename and email of all customers and the VIN, make, and price of all products.
+
+## Testing
+
+To run the tests, use the command `npm test`. The tests are written using Jest.
+
+## Built With
+
+- TypeScript
+- GraphQL
+- MongoDB
+- Apollo
+- Jest
+- CSV

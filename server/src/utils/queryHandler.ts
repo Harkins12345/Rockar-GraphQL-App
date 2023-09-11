@@ -1,9 +1,11 @@
-import { MongoDBQuery } from "./mongodbQuery.js";
-import { CSVReadQuery } from "./csvReadQuery.js";
-import { connectToDB } from "./mongodbConnect.js";
-import { QueryArgs, QueryResult } from "./types.js";
+import { MongoDBQuery } from "./mongodbQuery.ts";
+import { CSVReadQuery } from "./csvReadQuery.ts";
+import { connectToDB } from "./mongodbConnect.ts";
+import { QueryArgs, QueryResult } from "./types.ts";
 
-const enableCSVRead = process.env.ENABLE_CSV_READ.toLowerCase() == "true";
+// CSV file path must be relative to working directory
+// e.g. "./data/customer.csv"
+const CSV_FILE_PATH = process.env.CSV_FILE_PATH;
 
 /**
  * Handles which query to use depending on the .env variable ENABLE_CSV_READ.
@@ -21,10 +23,10 @@ export const queryHandler = async (
   // Execute MongoDB query
   // Else execute CSV query
   let query: MongoDBQuery | CSVReadQuery;
-  if (!enableCSVRead) {
+  if (!CSV_FILE_PATH) {
     const db = await connectToDB();
     query = new MongoDBQuery(args, db);
-  } else if (enableCSVRead) {
+  } else if (CSV_FILE_PATH) {
     query = new CSVReadQuery(args);
   }
   if (collection === "Products") {

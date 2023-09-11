@@ -1,5 +1,5 @@
 import { Db } from "mongodb";
-import { QueryArgs, QueryResult } from "./types.js";
+import { QueryArgs, QueryResult } from "./types.ts";
 
 /**
  * Used to query MongoDB
