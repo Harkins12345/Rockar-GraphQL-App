@@ -1,16 +1,16 @@
 import { MongoDBQuery } from "./mongodbQuery.js";
 import { CSVReadQuery } from "./csvReadQuery.js";
 import { connectToDB } from "./mongodbConnect.js";
-import { QueryArgs, QueryResults } from "./types.js";
+import { QueryArgs, QueryResult } from "./types.js";
 
 const enableCSVRead = process.env.ENABLE_CSV_READ.toLowerCase() == "true";
 
 /**
- * Handles which query to use depending on .env variable ENABLE_CSV_READ.
+ * Handles which query to use depending on the .env variable ENABLE_CSV_READ.
  *
  * @param {QueryArgs} args - The GraphQL query arguments.
  * @param {string} collection - The collection to target i.e Products or Customers.
- * @returns {QueryResults} The un/filtered query results.
+ * @returns {QueryResult} The un/filtered query results.
  */
 export const queryHandler = async (
   args: QueryArgs,

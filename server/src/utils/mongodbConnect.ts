@@ -8,7 +8,7 @@ let db = null;
 
 /**
  * Handles connection to MongoDB.
- * @returns {Db} The database connection.
+ * @returns {Db} - The database connection.
  */
 export async function connectToDB(): Promise<Db> {
   if (db) return db;

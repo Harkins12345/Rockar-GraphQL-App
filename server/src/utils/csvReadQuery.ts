@@ -1,6 +1,6 @@
 import fs from "fs";
 import csv from "csv-parser";
-import { QueryArgs, QueryResults } from "./types";
+import { QueryArgs, QueryResult } from "./types";
 
 /**
  * Used to query CSV files
@@ -10,7 +10,7 @@ export class CSVReadQuery {
   results: [string] | [];
 
   /**
-   * Create a new User instance.
+   * Create a new CSV Query instance.
    * @param {QueryArgs} args - Query arguments for filtering results.
    */
   constructor(args: QueryArgs) {
@@ -21,7 +21,7 @@ export class CSVReadQuery {
    * Reading CSV rows into array of objects.
    * @param {string} csvFilePath - File path to CSV file - relative to working directory.
    */
-  private readCSV = async (csvFilePath: string): Promise<QueryResults[]> => {
+  private readCSV = async (csvFilePath: string): Promise<QueryResult[]> => {
     const results = [];
     return new Promise<QueryArgs[]>((resolve, reject) => {
       fs.createReadStream(csvFilePath)
@@ -35,10 +35,10 @@ export class CSVReadQuery {
 
   /**
    * Filter results of the CSV according to the Query Args.
-   * @param {QueryResults[]} results - File path to CSV file - relative to working directory.
-   * @returns {QueryResults[]} - Filtered query results
+   * @param {QueryResult[]} results - File path to CSV file - relative to working directory.
+   * @returns {QueryResult[]} - Filtered query results
    */
-  private filterResults = (results: QueryResults[]): QueryResults[] =>
+  private filterResults = (results: QueryResult[]): QueryResult[] =>
     results.filter((result) => {
       for (const key in this.args) {
         if (
@@ -55,7 +55,7 @@ export class CSVReadQuery {
   /**
    * Get all products according to query argument filters
    * Get's all products with no arguments provided.
-   * @returns {QueryResults[]} - Filtered query results
+   * @returns {QueryResult[]} - Filtered query results
    */
   public getProducts = async () => {
     const results = await this.readCSV("./data/product.csv");
@@ -68,7 +68,7 @@ export class CSVReadQuery {
 
   /**
    * Get's a single product with a matching VIN number.
-   * @returns {QueryResults} - Filtered query result
+   * @returns {QueryResult} - Filtered query result
    */
   public getProduct = async () => {
     const results = await this.readCSV("./data/product.csv");
@@ -78,7 +78,7 @@ export class CSVReadQuery {
   /**
    * Get all customers' details according to query argument filters
    * Get's all customers' details with no arguments provided.
-   * @returns {QueryResults[]} - Filtered query results
+   * @returns {QueryResult[]} - Filtered query results
    */
   public getCustomers = async () => {
     const results = await this.readCSV("./data/customer.csv");
@@ -91,7 +91,7 @@ export class CSVReadQuery {
 
   /**
    * Get's a single customer's details with a matching email.
-   * @returns {QueryResults} - Filtered query result
+   * @returns {QueryResult} - Filtered query result
    */
   public getCustomer = async () => {
     const results = await this.readCSV("./data/customer.csv");
