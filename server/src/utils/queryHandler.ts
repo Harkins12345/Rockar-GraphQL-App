@@ -27,7 +27,7 @@ export const queryHandler = async (
     const db = await connectToDB();
     query = new MongoDBQuery(args, db);
   } else if (CSV_FILE_PATH) {
-    query = new CSVReadQuery(args);
+    query = new CSVReadQuery(args, CSV_FILE_PATH);
   }
   if (collection === "Products") {
     if (singleItem) {
